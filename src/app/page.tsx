@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MarketCarousel from "@/components/MarketCarousel";
 import {
   destinations,
   trending,
@@ -59,18 +60,18 @@ export default function Home() {
         </section>
 
         {/* Market schedule */}
-        <section className="bg-white py-12">
+        <section className="bg-white py-10">
           <div className="mx-auto max-w-7xl px-6">
-            <div className="mb-6">
+            <div className="mb-5">
               <h3 className="text-xl md:text-2xl font-semibold">
                 Markets — weekly schedule
               </h3>
               <p className="text-sm text-neutral-600 mt-1">
-                16 street markets across Chiang Mai, sorted by opening time.
+                16 street markets across Chiang Mai, grouped by time of day.
               </p>
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               {(
                 [
                   { key: "morning", title: "Morning", icon: "🌅" },
@@ -81,68 +82,12 @@ export default function Home() {
                 const items = marketSchedule.filter((m) => m.period === key);
                 if (items.length === 0) return null;
                 return (
-                  <div key={key}>
-                    <h4 className="text-sm font-semibold text-neutral-700 mb-3 flex items-center gap-2">
-                      <span aria-hidden className="text-base">
-                        {icon}
-                      </span>
-                      {title}
-                      <span className="text-xs font-normal text-neutral-500">
-                        {items.length} market{items.length !== 1 ? "s" : ""}
-                      </span>
-                    </h4>
-                    <div className="border border-neutral-200 rounded-lg overflow-hidden bg-white">
-                      {items.map((m, i) => (
-                        <div
-                          key={m.name}
-                          className={`flex flex-col md:flex-row md:items-center gap-3 px-4 py-3 hover:bg-neutral-50 transition ${
-                            i !== 0 ? "border-t border-neutral-200" : ""
-                          }`}
-                        >
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium text-neutral-900 truncate">
-                              {m.name}
-                            </p>
-                            <p className="text-xs text-neutral-500 mt-0.5">
-                              {m.hours}
-                            </p>
-                          </div>
-                          <div
-                            className="flex items-center gap-1 shrink-0"
-                            aria-label="Open days"
-                          >
-                            {(
-                              ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] as const
-                            ).map((d) => {
-                              const open = m.days.includes(d);
-                              const label = d[0].toUpperCase() + d[1];
-                              return (
-                                <span
-                                  key={d}
-                                  title={`${d}${open ? " · open" : ""}`}
-                                  className={`w-7 h-6 rounded-full text-[10px] font-bold flex items-center justify-center ${
-                                    open
-                                      ? "bg-brand text-white"
-                                      : "bg-neutral-100 text-neutral-400"
-                                  }`}
-                                >
-                                  {label}
-                                </span>
-                              );
-                            })}
-                          </div>
-                          <a
-                            href={m.mapUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-brand hover:underline shrink-0 md:w-16 md:text-right"
-                          >
-                            Map →
-                          </a>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <MarketCarousel
+                    key={key}
+                    icon={icon}
+                    title={title}
+                    items={items}
+                  />
                 );
               })}
             </div>
