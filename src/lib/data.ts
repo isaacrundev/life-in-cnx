@@ -1,12 +1,12 @@
 export const categoriesLinks = [
-  { label: "Music", slug: "music", icon: "🎵", count: 42 },
-  { label: "Markets", slug: "markets", icon: "🛍️", count: 28 },
-  { label: "Wellness & Yoga", slug: "wellness", icon: "🧘", count: 36 },
-  { label: "Food & Drink", slug: "food", icon: "🍜", count: 54 },
-  { label: "Workshops", slug: "workshops", icon: "🎨", count: 31 },
-  { label: "Muay Thai", slug: "muay-thai", icon: "🥊", count: 18 },
-  { label: "Nightlife", slug: "nightlife", icon: "🌙", count: 22 },
-  { label: "Festivals", slug: "festivals", icon: "🎉", count: 9 },
+  { label: "Social", slug: "social", icon: "🤝", count: 38 },
+  { label: "Business & Startup", slug: "business", icon: "💼", count: 24 },
+  { label: "AI & Tech", slug: "ai-tech", icon: "🤖", count: 19 },
+  { label: "Wellness", slug: "wellness", icon: "🧘", count: 36 },
+  { label: "Sports", slug: "sports", icon: "🏃", count: 27 },
+  { label: "Learning", slug: "learning", icon: "📚", count: 33 },
+  { label: "Hobbies", slug: "hobbies", icon: "🎨", count: 21 },
+  { label: "Nightlife", slug: "nightlife", icon: "🎵", count: 22 },
 ];
 
 // ponytail: reused from a small pool of verified-200 Unsplash IDs; swap for
