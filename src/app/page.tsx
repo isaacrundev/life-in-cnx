@@ -66,38 +66,85 @@ export default function Home() {
                 Markets — weekly schedule
               </h3>
               <p className="text-sm text-neutral-600 mt-1">
-                Chiang Mai street markets and when to find them.
+                16 street markets across Chiang Mai, sorted by opening time.
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {marketSchedule.map((group) => (
-                <div
-                  key={group.title}
-                  className="rounded-lg border border-neutral-200 bg-white p-5"
-                >
-                  <h4 className="text-xs font-semibold tracking-wider uppercase text-brand mb-4">
-                    {group.title}
-                  </h4>
-                  <ul className="space-y-4">
-                    {group.markets.map((m) => (
-                      <li key={m.name}>
-                        <p className="font-medium text-neutral-900">{m.name}</p>
-                        <p className="text-xs text-neutral-500 mt-0.5">
-                          {m.hours}
-                        </p>
-                        <a
-                          href={m.mapUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-brand hover:underline mt-1 inline-block"
+
+            <div className="space-y-8">
+              {(
+                [
+                  { key: "morning", title: "Morning", icon: "🌅" },
+                  { key: "afternoon", title: "Afternoon", icon: "☀️" },
+                  { key: "evening", title: "Evening", icon: "🌙" },
+                ] as const
+              ).map(({ key, title, icon }) => {
+                const items = marketSchedule.filter((m) => m.period === key);
+                if (items.length === 0) return null;
+                return (
+                  <div key={key}>
+                    <h4 className="text-sm font-semibold text-neutral-700 mb-3 flex items-center gap-2">
+                      <span aria-hidden className="text-base">
+                        {icon}
+                      </span>
+                      {title}
+                      <span className="text-xs font-normal text-neutral-500">
+                        {items.length} market{items.length !== 1 ? "s" : ""}
+                      </span>
+                    </h4>
+                    <div className="border border-neutral-200 rounded-lg overflow-hidden bg-white">
+                      {items.map((m, i) => (
+                        <div
+                          key={m.name}
+                          className={`flex flex-col md:flex-row md:items-center gap-3 px-4 py-3 hover:bg-neutral-50 transition ${
+                            i !== 0 ? "border-t border-neutral-200" : ""
+                          }`}
                         >
-                          Open in Google Maps →
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-neutral-900 truncate">
+                              {m.name}
+                            </p>
+                            <p className="text-xs text-neutral-500 mt-0.5">
+                              {m.hours}
+                            </p>
+                          </div>
+                          <div
+                            className="flex items-center gap-1 shrink-0"
+                            aria-label="Open days"
+                          >
+                            {(
+                              ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] as const
+                            ).map((d) => {
+                              const open = m.days.includes(d);
+                              const label = d[0].toUpperCase() + d[1];
+                              return (
+                                <span
+                                  key={d}
+                                  title={`${d}${open ? " · open" : ""}`}
+                                  className={`w-7 h-6 rounded-full text-[10px] font-bold flex items-center justify-center ${
+                                    open
+                                      ? "bg-brand text-white"
+                                      : "bg-neutral-100 text-neutral-400"
+                                  }`}
+                                >
+                                  {label}
+                                </span>
+                              );
+                            })}
+                          </div>
+                          <a
+                            href={m.mapUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-brand hover:underline shrink-0 md:w-16 md:text-right"
+                          >
+                            Map →
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
