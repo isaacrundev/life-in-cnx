@@ -1,65 +1,285 @@
+import Link from "next/link";
 import Image from "next/image";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import {
+  categories,
+  destinations,
+  trending,
+  featured,
+  categoriesLinks,
+  heroImage,
+} from "@/lib/data";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <>
+      <Header />
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="relative">
+          <div className="relative h-[420px] md:h-[520px] w-full overflow-hidden">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src={heroImage}
+              alt="Chiang Mai temple at sunset"
+              fill
+              priority
+              className="object-cover"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/10" />
+            <div className="absolute inset-0 flex items-center">
+              <div className="mx-auto max-w-7xl w-full px-6">
+                <p className="text-white/90 text-sm md:text-base font-medium tracking-wide uppercase mb-3">
+                  This week in Chiang Mai
+                </p>
+                <h1 className="text-white text-4xl md:text-6xl font-semibold leading-tight max-w-2xl">
+                  Music, markets, and temple nights.
+                </h1>
+                <p className="text-white/90 text-base md:text-lg mt-4 max-w-xl">
+                  Hand-picked events happening across the old city, Nimman, and
+                  the riverside.
+                </p>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Link
+                    href="#trending"
+                    className="inline-flex items-center rounded-full bg-accent px-6 py-3 text-white font-semibold hover:bg-[#d9573a] transition"
+                  >
+                    Browse events
+                  </Link>
+                  <Link
+                    href="#destinations"
+                    className="inline-flex items-center rounded-full bg-white/95 px-6 py-3 text-neutral-900 font-semibold hover:bg-white transition"
+                  >
+                    Explore neighborhoods
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Category pills */}
+        <section className="border-b border-neutral-200 bg-white">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="no-scrollbar flex gap-2 overflow-x-auto py-4">
+              {categories.map((c) => (
+                <Link
+                  key={c.label}
+                  href={`/c/${c.slug}`}
+                  className="shrink-0 inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-800 hover:border-brand hover:text-brand transition"
+                >
+                  <span aria-hidden>{c.icon}</span>
+                  {c.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Location bar + filter tabs */}
+        <section className="bg-white">
+          <div className="mx-auto max-w-7xl px-6 pt-8">
+            <h2 className="text-2xl md:text-3xl font-semibold">
+              Browsing events in
+            </h2>
+            <button className="mt-2 inline-flex items-center gap-2 rounded-md border border-neutral-300 px-3 py-2 text-sm font-medium hover:border-brand transition">
+              <span aria-hidden>📍</span>
+              Chiang Mai, Thailand
+              <span aria-hidden className="text-neutral-500">▾</span>
+            </button>
+          </div>
+          <div className="mx-auto max-w-7xl px-6 mt-5">
+            <div className="flex gap-6 border-b border-neutral-200">
+              {["All", "For you", "Today", "This weekend"].map((t, i) => (
+                <button
+                  key={t}
+                  className={`-mb-px pb-3 text-sm font-medium border-b-2 ${
+                    i === 0
+                      ? "border-brand text-brand"
+                      : "border-transparent text-neutral-600 hover:text-neutral-900"
+                  }`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Top destinations */}
+        <section id="destinations" className="bg-white py-10">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="flex items-end justify-between mb-5">
+              <h3 className="text-xl md:text-2xl font-semibold">
+                Top neighborhoods in Chiang Mai
+              </h3>
+              <Link
+                href="/destinations"
+                className="text-sm font-medium text-brand hover:underline"
+              >
+                See all
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {destinations.map((d) => (
+                <Link
+                  key={d.name}
+                  href={`/d/${d.slug}`}
+                  className="group relative aspect-[4/5] overflow-hidden rounded-xl"
+                >
+                  <Image
+                    src={d.image}
+                    alt={d.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <p className="text-lg font-semibold">{d.name}</p>
+                    <p className="text-xs text-white/80">{d.count} events</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Trending events */}
+        <section id="trending" className="bg-[#fafaf7] py-12">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="flex items-end justify-between mb-5">
+              <h3 className="text-xl md:text-2xl font-semibold">
+                Trending in Chiang Mai
+              </h3>
+              <Link
+                href="/events"
+                className="text-sm font-medium text-brand hover:underline"
+              >
+                See all
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+              {trending.map((e) => (
+                <EventCard key={e.title} event={e} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Featured / promoted band */}
+        <section className="bg-white py-12">
+          <div className="mx-auto max-w-7xl px-6">
+            <h3 className="text-xl md:text-2xl font-semibold mb-5">
+              Featured this month
+            </h3>
+            <div className="grid md:grid-cols-2 gap-5">
+              {featured.map((f) => (
+                <Link
+                  key={f.title}
+                  href={`/e/${f.slug}`}
+                  className="group relative aspect-[16/9] overflow-hidden rounded-xl"
+                >
+                  <Image
+                    src={f.image}
+                    alt={f.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <span className="inline-block bg-accent text-white text-xs font-semibold px-2 py-1 rounded mb-2">
+                      {f.tag}
+                    </span>
+                    <p className="text-2xl font-semibold">{f.title}</p>
+                    <p className="text-sm text-white/85 mt-1">{f.subtitle}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Browse by category */}
+        <section className="bg-[#fafaf7] py-12">
+          <div className="mx-auto max-w-7xl px-6">
+            <h3 className="text-xl md:text-2xl font-semibold mb-5">
+              Browse by category
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {categoriesLinks.map((c) => (
+                <Link
+                  key={c.label}
+                  href={`/c/${c.slug}`}
+                  className="rounded-lg border border-neutral-200 bg-white p-4 hover:border-brand hover:shadow-sm transition"
+                >
+                  <span className="text-2xl" aria-hidden>
+                    {c.icon}
+                  </span>
+                  <p className="mt-2 font-semibold text-neutral-900">
+                    {c.label}
+                  </p>
+                  <p className="text-xs text-neutral-500">{c.count} events</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Bottom CTA */}
+        <section className="bg-brand py-14">
+          <div className="mx-auto max-w-7xl px-6 text-center text-white">
+            <h3 className="text-2xl md:text-3xl font-semibold">
+              Hosting something in Chiang Mai?
+            </h3>
+            <p className="mt-2 text-white/85 max-w-xl mx-auto">
+              Reach locals and travelers with free ticketing, QR check-in, and
+              payout in THB.
+            </p>
+            <Link
+              href="/create"
+              className="mt-6 inline-flex items-center rounded-full bg-accent px-6 py-3 font-semibold hover:bg-[#d9573a] transition"
+            >
+              Create your event
+            </Link>
+          </div>
+        </section>
       </main>
-    </div>
+      <Footer />
+    </>
+  );
+}
+
+function EventCard({
+  event,
+}: {
+  event: { title: string; date: string; venue: string; price: string; image: string; tag?: string };
+}) {
+  return (
+    <Link
+      href="#"
+      className="group flex flex-col overflow-hidden rounded-xl bg-white border border-neutral-200 hover:shadow-md transition"
+    >
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <Image
+          src={event.image}
+          alt={event.title}
+          fill
+          className="object-cover group-hover:scale-105 transition duration-500"
+        />
+        {event.tag && (
+          <span className="absolute top-2 left-2 bg-white/95 text-neutral-900 text-xs font-semibold px-2 py-1 rounded">
+            {event.tag}
+          </span>
+        )}
+      </div>
+      <div className="p-3 flex flex-col gap-1">
+        <p className="text-xs text-brand font-semibold">{event.date}</p>
+        <p className="font-semibold text-neutral-900 line-clamp-2">
+          {event.title}
+        </p>
+        <p className="text-xs text-neutral-500">{event.venue}</p>
+        <p className="text-sm font-semibold mt-1">{event.price}</p>
+      </div>
+    </Link>
   );
 }
