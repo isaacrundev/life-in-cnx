@@ -7,6 +7,7 @@ import {
   trending,
   featured,
   categoriesLinks,
+  marketSchedule,
   heroImage,
 } from "@/lib/data";
 
@@ -53,6 +54,50 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Market schedule */}
+        <section className="bg-white py-12">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="mb-6">
+              <h3 className="text-xl md:text-2xl font-semibold">
+                Markets — weekly schedule
+              </h3>
+              <p className="text-sm text-neutral-600 mt-1">
+                Chiang Mai street markets and when to find them.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {marketSchedule.map((group) => (
+                <div
+                  key={group.title}
+                  className="rounded-lg border border-neutral-200 bg-white p-5"
+                >
+                  <h4 className="text-xs font-semibold tracking-wider uppercase text-brand mb-4">
+                    {group.title}
+                  </h4>
+                  <ul className="space-y-4">
+                    {group.markets.map((m) => (
+                      <li key={m.name}>
+                        <p className="font-medium text-neutral-900">{m.name}</p>
+                        <p className="text-xs text-neutral-500 mt-0.5">
+                          {m.hours}
+                        </p>
+                        <a
+                          href={m.mapUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-brand hover:underline mt-1 inline-block"
+                        >
+                          Open in Google Maps →
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         </section>

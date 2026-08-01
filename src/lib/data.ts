@@ -9,6 +9,55 @@ export const categoriesLinks = [
   { label: "Nightlife", slug: "nightlife", icon: "🎵", count: 22 },
 ];
 
+export const marketSchedule = [
+  {
+    title: "Weekday",
+    markets: [
+      { name: "Friday Morning Market", hours: "05:00-12:00 · Friday", mapUrl: "https://maps.google.com/?cid=6301667864020871943" },
+      { name: "White Market", hours: "15:00-22:00 · Thu-Sun (some evenings extend to Mon)", mapUrl: "https://maps.google.com/?cid=3675917708769880945" },
+      { name: "NGFM Night Ground Flea Market", hours: "16:00-23:00 · Tue-Wed", mapUrl: "https://maps.google.com/?cid=8422850724118584169" },
+      { name: "Walking Street Nimman Soi 1", hours: "17:00-22:00 · Friday", mapUrl: "https://maps.google.com/?cid=12565613961008788356" },
+    ],
+  },
+  {
+    title: "Saturday",
+    markets: [
+      { name: "Coconut Market", hours: "08:00-15:00", mapUrl: "https://maps.google.com/?cid=6813936026664290723" },
+      { name: "Cham Cha Market", hours: "09:00-15:00", mapUrl: "https://maps.google.com/?cid=11184587137279615973" },
+      { name: "Baan Kang Wat", hours: "10:00-18:00", mapUrl: "https://maps.google.com/?cid=6561582910531882655" },
+      { name: "White Market", hours: "15:00-22:00", mapUrl: "https://maps.google.com/?cid=3675917708769880945" },
+      { name: "Wua Lai Saturday Walking Street", hours: "17:00-22:30", mapUrl: "https://maps.google.com/?cid=9528490394611933464" },
+    ],
+  },
+  {
+    title: "Sunday",
+    markets: [
+      { name: "Coconut Market", hours: "08:00-15:00", mapUrl: "https://maps.google.com/?cid=6813936026664290723" },
+      { name: "Cham Cha Market", hours: "09:00-15:00", mapUrl: "https://maps.google.com/?cid=11184587137279615973" },
+      { name: "Baan Kang Wat", hours: "10:00-18:00", mapUrl: "https://maps.google.com/?cid=6561582910531882655" },
+      { name: "White Market", hours: "15:00-22:00", mapUrl: "https://maps.google.com/?cid=3675917708769880945" },
+      { name: "Tha Phae Walking Street", hours: "17:00-22:00", mapUrl: "https://maps.google.com/?cid=15918740970844592459" },
+    ],
+  },
+  {
+    title: "Daily",
+    markets: [
+      { name: "Khlong Mae Kha", hours: "15:00-22:00", mapUrl: "https://maps.google.com/?cid=2992999415371819311" },
+      { name: "Chiang Mai Night Bazaar", hours: "17:00-00:00", mapUrl: "https://maps.google.com/?cid=805850765827944477" },
+      { name: "Malin Plaza", hours: "17:00-23:00", mapUrl: "https://maps.google.com/?cid=13647248764105105816" },
+    ],
+  },
+  {
+    title: "Jing Jai Market — Weekend Mornings",
+    markets: [
+      { name: "Good Goods Zone", hours: "Mon-Fri 08:30-22:00 · Weekends 06:30-22:00", mapUrl: "https://maps.google.com/?cid=10374904147004348987" },
+      { name: "Farmers Market & Handmade / Rustic Market / Morning Market", hours: "Weekends 06:30-22:00", mapUrl: "https://maps.google.com/?cid=11511114691515616006" },
+      { name: "Jing Jai Kad Vintage", hours: "1st Friday of the month · 16:00-22:00", mapUrl: "https://maps.google.com/?cid=11511114691515616006" },
+      { name: "Weekend Morning Market", hours: "Saturday & Sunday 06:30-12:00", mapUrl: "https://maps.google.com/?cid=11511114691515616006" },
+    ],
+  },
+];
+
 // ponytail: reused from a small pool of verified-200 Unsplash IDs; swap for
 // real Chiang Mai photography when assets land.
 const IMG = {
