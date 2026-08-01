@@ -3,7 +3,6 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
-  categories,
   destinations,
   trending,
   featured,
@@ -58,49 +57,27 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Category pills */}
-        <section className="border-b border-neutral-200 bg-white">
+        {/* Browse by category */}
+        <section className="bg-[#fafaf7] py-10">
           <div className="mx-auto max-w-7xl px-6">
-            <div className="no-scrollbar flex gap-2 overflow-x-auto py-4">
-              {categories.map((c) => (
+            <h3 className="text-xl md:text-2xl font-semibold mb-5">
+              Browse by category
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {categoriesLinks.map((c) => (
                 <Link
                   key={c.label}
                   href={`/c/${c.slug}`}
-                  className="shrink-0 inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-800 hover:border-brand hover:text-brand transition"
+                  className="rounded-lg border border-neutral-200 bg-white p-4 hover:border-brand hover:shadow-sm transition"
                 >
-                  <span aria-hidden>{c.icon}</span>
-                  {c.label}
+                  <span className="text-2xl" aria-hidden>
+                    {c.icon}
+                  </span>
+                  <p className="mt-2 font-semibold text-neutral-900">
+                    {c.label}
+                  </p>
+                  <p className="text-xs text-neutral-500">{c.count} events</p>
                 </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Location bar + filter tabs */}
-        <section className="bg-white">
-          <div className="mx-auto max-w-7xl px-6 pt-8">
-            <h2 className="text-2xl md:text-3xl font-semibold">
-              Browsing events in
-            </h2>
-            <button className="mt-2 inline-flex items-center gap-2 rounded-md border border-neutral-300 px-3 py-2 text-sm font-medium hover:border-brand transition">
-              <span aria-hidden>📍</span>
-              Chiang Mai, Thailand
-              <span aria-hidden className="text-neutral-500">▾</span>
-            </button>
-          </div>
-          <div className="mx-auto max-w-7xl px-6 mt-5">
-            <div className="flex gap-6 border-b border-neutral-200">
-              {["All", "For you", "Today", "This weekend"].map((t, i) => (
-                <button
-                  key={t}
-                  className={`-mb-px pb-3 text-sm font-medium border-b-2 ${
-                    i === 0
-                      ? "border-brand text-brand"
-                      : "border-transparent text-neutral-600 hover:text-neutral-900"
-                  }`}
-                >
-                  {t}
-                </button>
               ))}
             </div>
           </div>
@@ -193,32 +170,6 @@ export default function Home() {
                     <p className="text-2xl font-semibold">{f.title}</p>
                     <p className="text-sm text-white/85 mt-1">{f.subtitle}</p>
                   </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Browse by category */}
-        <section className="bg-[#fafaf7] py-12">
-          <div className="mx-auto max-w-7xl px-6">
-            <h3 className="text-xl md:text-2xl font-semibold mb-5">
-              Browse by category
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {categoriesLinks.map((c) => (
-                <Link
-                  key={c.label}
-                  href={`/c/${c.slug}`}
-                  className="rounded-lg border border-neutral-200 bg-white p-4 hover:border-brand hover:shadow-sm transition"
-                >
-                  <span className="text-2xl" aria-hidden>
-                    {c.icon}
-                  </span>
-                  <p className="mt-2 font-semibold text-neutral-900">
-                    {c.label}
-                  </p>
-                  <p className="text-xs text-neutral-500">{c.count} events</p>
                 </Link>
               ))}
             </div>

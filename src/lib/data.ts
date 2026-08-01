@@ -1,14 +1,3 @@
-export const categories = [
-  { label: "Music", slug: "music", icon: "🎵" },
-  { label: "Markets", slug: "markets", icon: "🛍️" },
-  { label: "Wellness", slug: "wellness", icon: "🧘" },
-  { label: "Food & Drink", slug: "food", icon: "🍜" },
-  { label: "Workshops", slug: "workshops", icon: "🎨" },
-  { label: "Nature", slug: "nature", icon: "🌿" },
-  { label: "Nightlife", slug: "nightlife", icon: "🌙" },
-  { label: "Festivals", slug: "festivals", icon: "🎉" },
-];
-
 export const categoriesLinks = [
   { label: "Music", slug: "music", icon: "🎵", count: 42 },
   { label: "Markets", slug: "markets", icon: "🛍️", count: 28 },
